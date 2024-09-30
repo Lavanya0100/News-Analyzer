@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('421f84013283b6f3e5a536c58ae9e493.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .toggle-btn {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .toggle-btn button.active {
+            background-color: #007BFF;
+        }
+
+        form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        form.active {
+            display: block;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="toggle-btn">
+            <button id="loginBtn" class="active">Login</button>
+            <button id="signupBtn">Sign Up</button>
+        </div>
+
+        <form id="loginForm" class="active">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <span id="loginEmailError" class="error"></span>
+            <input type="password" id="loginPassword" placeholder="Password">
+            <span id="loginPasswordError" class="error"></span>
+            <button class="submit-btn" type="button" onclick="validateLoginForm()">Login</button>
+        </form>
+
+        <form id="signupForm">
+            <h2>Sign Up</h2>
+            <input type="text" id="signupName" placeholder="Full Name">
+            <span id="signupNameError" class="error"></span>
+            <input type="email" id="signupEmail" placeholder="Email">
+            <span id="signupEmailError" class="error"></span>
+            <input type="password" id="signupPassword" placeholder="Password">
+            <span id="signupPasswordError" class="error"></span>
+            <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+            <span id="signupConfirmPasswordError" class="error"></span>
+            <button class="submit-btn" type="button" onclick="validateSignupForm()">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+
+        // Toggle between login and signup forms
+        loginBtn.addEventListener('click', () => {
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+            loginBtn.classList.add('active');
+            signupBtn.classList.remove('active');
+        });
+
+        signupBtn.addEventListener('click', () => {
+            signupForm.classList.add('active');
+            loginForm.classList.remove('active');
+            signupBtn.classList.add('active');
+            loginBtn.classList.remove('active');
+        });
+
+        // Login form validation and redirection to index.html on success
+        function validateLoginForm() {
+            let email = document.getElementById('loginEmail').value;
+            let password = document.getElementById('loginPassword').value;
+            let emailError = document.getElementById('loginEmailError');
+            let passwordError = document.getElementById('loginPasswordError');
+            let isValid = true;
+
+            emailError.textContent = '';
+            passwordError.textContent = '';
+
+            // Check if the user exists in localStorage
+            let storedUser = localStorage.getItem(email);
+            if (!storedUser) {
+                emailError.textContent = 'User does not exist. Please sign up.';
+                return;
+            }
+
+            let user = JSON.parse(storedUser);
+
+            if (user.password !== password) {
+                passwordError.textContent = 'Incorrect password.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Login successful!');
+                // Redirect to the index.html page
+                window.location.href = "index.html";
+            }
+        }
+
+        // Signup form validation and storing data in localStorage
+        function validateSignupForm() {
+            let name = document.getElementById('signupName').value;
+            let email = document.getElementById('signupEmail').value;
+            let password = document.getElementById('signupPassword').value;
+            let confirmPassword = document.getElementById('signupConfirmPassword').value;
+            let nameError = document.getElementById('signupNameError');
+            let emailError = document.getElementById('signupEmailError');
+            let passwordError = document.getElementById('signupPasswordError');
+            let confirmPasswordError = document.getElementById('signupConfirmPasswordError');
+            let isValid = true;
+
+            nameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            confirmPasswordError.textContent = '';
+
+            // Validate form fields
+            if (name.trim() === '') {
+                nameError.textContent = 'Full name is required.';
+                isValid = false;
+            }
+            if (!email.includes('@') || !email.includes('.')) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+            if (password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters long.';
+                isValid = false;
+            }
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                isValid = false;
+            }
+
+            // If valid, store user details in localStorage
+            if (isValid) {
+                const user = {
+                    name: name,
+                    email: email,
+                    password: password
+                };
+
+                // Store user data in localStorage using the email as the key
+                localStorage.setItem(email, JSON.stringify(user));
+
+                alert('Signup successful! Please login.');
+                // Switch to login form after successful sign-up
+                signupForm.classList.remove('active');
+                loginForm.classList.add('active');
+                signupBtn.classList.remove('active');
+                loginBtn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

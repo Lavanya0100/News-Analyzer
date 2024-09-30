@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('421f84013283b6f3e5a536c58ae9e493.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        main {
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 50px auto;
+            padding: 30px;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        main h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        main p {
+            color: #555;
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p {
+            color: #555;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to News Analyzer</h1>
+        <nav>
+            <ul>
+                <li><a href="news.html">News</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>About This Application</h2>
+        <p>This application fetches news articles and performs sentiment analysis on them.</p>
+        <button class="submit-btn" onclick="window.location.href='news.html'">Analyze News</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 News Analyzer</p>
+    </footer>
+</body>
+</html>

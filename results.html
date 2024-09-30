@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Sentiment Analysis Results</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis Results</h1>
+        <div id="results-container"></div>
+        <a href="news.html">Back to News</a>
+    </div>
+
+    <script>
+        // Fetch the stored data from localStorage
+        const results = JSON.parse(localStorage.getItem('newsResults'));
+
+        // Function to display the results
+        function displayResults() {
+            const resultsContainer = document.getElementById('results-container');
+
+            if (results && results.length > 0) {
+                results.forEach(article => {
+                    const articleDiv = document.createElement('div');
+                    articleDiv.classList.add('result-article');
+                    articleDiv.innerHTML = `
+                        <h2>${article.title}</h2>
+                        <p>${article.description}</p>
+                        <p><strong>Sentiment: ${article.sentiment}</strong></p>
+                    `;
+                    resultsContainer.appendChild(articleDiv);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>No results available.</p>';
+            }
+        }
+
+        // Call the function to display the results on page load
+        displayResults();
+    </script>
+</body>
+</html>

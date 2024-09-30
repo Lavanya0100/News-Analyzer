@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Sentiment Analysis</title>
+    <style>
+        body {
+            background: url('421f84013283b6f3e5a536c58ae9e493.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 50px auto;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .sentiment {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .news-article {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .category-container {
+            margin-top: 30px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>News Sentiment Analysis</h1>
+        <p>Click the button to fetch the latest news and analyze sentiment.</p>
+        <button id="fetch-all-news">Fetch All News</button>
+        <button id="fetch-category-news">Fetch Category News</button>
+
+        <!-- Container to display fetched news -->
+        <div id="news-container"></div>
+
+        <!-- Sports News Section -->
+        <div class="category-container" id="sports-news">
+            <h2 class="category-title">Sports News</h2>
+        </div>
+
+        <!-- International News Section -->
+        <div class="category-container" id="international-news">
+            <h2 class="category-title">International News</h2>
+        </div>
+
+        <!-- National Politics News Section -->
+        <div class="category-container" id="national-politics-news">
+            <h2 class="category-title">National Politics News</h2>
+        </div>
+
+        <!-- Miscellaneous News Section -->
+        <div class="category-container" id="miscellaneous-news">
+            <h2 class="category-title">Miscellaneous News</h2>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="sentiment.js"></script>
+</body>
+</html>
